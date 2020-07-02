@@ -15,6 +15,10 @@ phases:
       # tests
       - echo building
       - npm run build
+  post_build:
+    commands:
+      # run app
+      - node dist/main.js
 artifacts:
   files:
     - '**/*'
