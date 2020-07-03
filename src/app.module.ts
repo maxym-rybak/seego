@@ -10,11 +10,11 @@ import { Place } from './places/entities/place.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'seego.chuliikx9fyq.eu-central-1.rds.amazonaws.com',
+      host: 'localhost',
       port: 5432,
-      username: 'postgres',
-      password: '123123123',
-      database: 'postgres',
+      username: process.env.POSTGRES_USER || 'user',
+      password: process.env.POSTGRES_PASSWORD || 'pass',
+      database: process.env.POSTGRESS_DB || 'postgres',
       entities: [Place],
       synchronize: true,
     }),
