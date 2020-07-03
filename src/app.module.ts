@@ -10,7 +10,7 @@ import { Place } from './places/entities/place.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      host: process.env.POSTGRES_HOST || 'localhost',
       port: 5432,
       username: process.env.POSTGRES_USER || 'user',
       password: process.env.POSTGRES_PASSWORD || 'pass',
