@@ -10,7 +10,6 @@ phases:
     commands:
       - echo install dependencies
       - npm install
-      - npm i -g @nestjs/cli
   build:
     commands:
       # tests
