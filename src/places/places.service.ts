@@ -8,18 +8,29 @@ import { CreatePlaceDto } from './dto/create-place.dto';
 export class PlacesService {
   constructor(
     @InjectRepository(Place)
-    private place: Repository<Place>,
+    private placesRepository: Repository<Place>,
   ) {}
 
   findAll(): Promise<Place[]> {
-    return this.place.find();
+    return this.placesRepository.find();
   }
 
-  findOne(id: string): Promise<Place> {
-    return this.place.findOne(id);
+  findOne(id: number): Promise<Place> {
+    return this.placesRepository.findOne(id);
   }
 
-  async remove(id: string): Promise<void> {
-    await this.place.delete(id);
+  async create(place: CreatePlaceDto): Promise<Place> {
+    const newPlace = this.placesRepository.create(place);
+    return await this.placesRepository.save(newPlace);
+  }
+
+  async update(id: number, place: CreatePlaceDto): Promise<Place> {
+    let placeToUpdate = await this.placesRepository.findOne(id);
+    placeToUpdate = { ...placeToUpdate, ...place };
+    return await this.placesRepository.save(placeToUpdate);
+  }
+
+  async delete(id: number): Promise<void> {
+    await this.placesRepository.delete(id);
   }
 }
