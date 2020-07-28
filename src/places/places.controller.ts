@@ -6,6 +6,7 @@ import {
   Delete,
   Body,
   Param,
+  Header,
 } from '@nestjs/common';
 import { CreatePlaceDto } from './dto/create-place.dto';
 import { PlacesService } from './places.service';
@@ -16,6 +17,8 @@ export class PlacesController {
   constructor(private readonly placesService: PlacesService) {}
 
   @Get()
+  @Header('Access-Control-Expose-Headers', 'X-Total-Count')
+  @Header('X-Total-Count', '4')
   async findAll(): Promise<Place[]> {
     return this.placesService.findAll();
   }
