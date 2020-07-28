@@ -12,8 +12,8 @@ export class AppService {
       apiVersion: '2006-03-01',
       region: 'us-west-1',
       credentials: {
-        accessKeyId: 'AKIA6DAED46F7TMMXDNW',
-        secretAccessKey: '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',
+        accessKeyId: process.env.IAM_USER_KEY,
+        secretAccessKey: process.env.IAM_USER_SECRET_KEY,
       },
     });
     s3bucket.createBucket(function() {
